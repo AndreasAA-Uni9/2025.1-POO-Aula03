@@ -8,13 +8,13 @@ public class TelevisaoTest
     [TestMethod]
     public void Dado_Tamanho_21_Deve_Retornar_Excecao()
     {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Televisao(21f), $"O tamanho(21) n„o È suportado!");
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Televisao(21f), $"O tamanho(21) n√£o √© suportado!");
     }
 
     [TestMethod]
     public void Dado_Tamanho_81_Deve_Retornar_Excecao()
     {
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Televisao(81f), $"O tamanho(81) n„o È suportado!");
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Televisao(81f), $"O tamanho(81) n√£o √© suportado!");
     }
 
     [TestMethod]
@@ -115,7 +115,72 @@ public class TelevisaoTest
         televisao.AlternarModoMudo();
         Assert.AreEqual(volumeInicial, televisao.Volume);
     }
+[TestMethod]
+    public void Deve_Aumentar_Canal()
+    {
+        Televisao televisao = new Televisao(32);
+        televisao.SelecionarCanal(10);
 
+        televisao.AumentarCanal();
+
+        Assert.AreEqual(11, televisao.Canal);
+    }
+
+    [TestMethod]
+    public void Deve_Diminuir_Canal()
+    {
+        Televisao televisao = new Televisao(32);
+        televisao.SelecionarCanal(10);
+
+        televisao.DiminuirCanal();
+
+        Assert.AreEqual(9, televisao.Canal);
+    }
+
+    [TestMethod]
+    public void Nao_Deve_Diminuir_Canal_Abaixo_Do_Minimo()
+    {
+        Televisao televisao = new Televisao(32);
+        televisao.SelecionarCanal(1);
+
+        televisao.DiminuirCanal();
+
+        Assert.AreEqual(1, televisao.Canal);
+    }
+
+    [TestMethod]
+    public void Nao_Deve_Aumentar_Canal_Acima_Do_Maximo()
+    {
+        Televisao televisao = new Televisao(32);
+        televisao.SelecionarCanal(999);
+
+        televisao.AumentarCanal();
+
+        Assert.AreEqual(999, televisao.Canal);
+    }
+
+    [TestMethod]
+    public void Deve_Selecionar_Canal_Pelo_Numero()
+    {
+        Televisao televisao = new Televisao(32);
+
+        televisao.SelecionarCanal(505);
+
+        Assert.AreEqual(505, televisao.Canal);
+    }
+
+    [TestMethod]
+    public void Nao_Deve_Selecionar_Canal_Invalido()
+    {
+        Televisao televisao = new Televisao(32);
+        televisao.SelecionarCanal(10);
+
+        televisao.SelecionarCanal(0); // Canal inv√°lido
+        Assert.AreEqual(10, televisao.Canal);
+
+        televisao.SelecionarCanal(1000); // Canal acima do permitido
+        Assert.AreEqual(10, televisao.Canal);
+    }
 
     
 }
