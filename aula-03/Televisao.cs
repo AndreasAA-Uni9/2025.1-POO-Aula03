@@ -29,7 +29,7 @@ public class Televisao
     private int _ultimoVolume = VOLUME_PADRAO;
 
     private const int CANAL_MINIMO = 1;
-    private const int CANAL_MAXIMO = 100;
+    private const int CANAL_MAXIMO = 999;
 
 
 
