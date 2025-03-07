@@ -48,6 +48,7 @@ public class Televisao
 
     public void AumentarVolume()
     {
+        if (Volume == VOLUME_MINIMO) return;
         if (Volume < VOLUME_MAXIMO)
         {
             Volume++;
@@ -61,6 +62,7 @@ public class Televisao
 
     public void DiminuirVolume()
     {
+        if (Volume == VOLUME_MINIMO) return;
         if (Volume > VOLUME_MINIMO)
         {
             Volume--;
