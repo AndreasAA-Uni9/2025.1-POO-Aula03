@@ -28,6 +28,11 @@ public class Televisao
 
     private int _ultimoVolume = VOLUME_PADRAO;
 
+    private const int CANAL_MINIMO = 1;
+    private const int CANAL_MAXIMO = 100;
+
+
+
 
 
     //Get: permite que seja executada a 
@@ -45,6 +50,7 @@ public class Televisao
     public int Volume { get; private set; }
     public int Canal { get; set; }
     public bool Estado { get; set; }
+    public int Canal { get; private set; } = CANAL_MINIMO;
 
     public void AumentarVolume()
     {
@@ -88,6 +94,33 @@ public class Televisao
         {
             Volume = _ultimoVolume;
             Console.WriteLine($"O volume da TV é: {Volume}.");
+        }
+    }
+ public void AumentarCanal()
+    {
+        if (Canal < CANAL_MAXIMO)
+        {
+            Canal++;
+        }
+    }
+
+    public void DiminuirCanal()
+    {
+        if (Canal > CANAL_MINIMO)
+        {
+            Canal--;
+        }
+    }
+
+    public void SelecionarCanal(int numeroCanal)
+    {
+        if (numeroCanal >= CANAL_MINIMO && numeroCanal <= CANAL_MAXIMO)
+        {
+            Canal = numeroCanal;
+        }
+        else
+        {
+            Console.WriteLine("Canal inválido!");
         }
     }
 }
